@@ -65,14 +65,9 @@ router.post(
                 { expiresIn: 360000 },
                 (err, token) => {
                     if (err) throw err;
-                    console.log(token);
-                    res.send({ token });
+                    res.json({ token });
                 }
             );
-
-            // save the user.
-
-            res.send("User Registered");
         } catch (err) {
             console.error(err);
             res.status(500).send("Server err");

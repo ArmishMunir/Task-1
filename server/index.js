@@ -11,7 +11,7 @@ app.use(express.json());
 // Routes
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
-app.unsubscribe("/api/profile", require("./routes/api/profile"));
+app.use("/api/profile", require("./routes/api/profile"));
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
