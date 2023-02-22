@@ -53,18 +53,22 @@ router.post(
                     id: user.id,
                 },
             };
+            let tokenTosend;
             jwt.sign(
                 payload,
                 config.get("JWT_SECRET"),
-                { expiresIn: 36000 },
+                { expiresIn: 360000 },
                 (err, token) => {
-                    console.log(token);
                     if (err) throw err;
-                    res.josn({ token });
+                    tokenTosend = token;
+                    res.json({ token: token });
+                    // localStorage.setItem("token", token);
+                    // console.log(localStorage.getItem("token"));
                 }
             );
+            res.json({ tokenTosend });
         } catch (err) {
-            console.err(err);
+            console.error(err);
             res.status(500).send("Server err");
         }
     }

@@ -1,6 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { login } from "../../services/servicesAuth";
+import { context } from "../../App";
+import { showToast } from "../toast";
+
 function Login() {
+    const [loginState, setLoginState] = useContext(context);
+
     const [user, setUser] = useState({
         email: "",
         password: "",
@@ -11,8 +17,14 @@ function Login() {
         setUser({ ...user, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        const res = await login(user.email, user.password);
+        if (res) {
+            setLoginState(!loginState);
+            showToast("success", "🎉 Login successful");
+            // window.location("/dashboard");
+        }
     };
 
     return (

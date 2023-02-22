@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { showToast } from "../toast";
+import { register } from "../../services/servicesAuth";
+
 function Register() {
     const [user, setUser] = useState({
         name: "",
@@ -16,35 +20,12 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (user.password !== user.confirmPassword) {
-            alert("Passwords do not match");
-            return;
-        }
-
-        const newUser = {
-            name: user.name,
-            email: user.email,
-            password: user.password,
-        };
-        try {
-            const config = {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            };
-            const res = await axios.post(
-                "http://localhost:8080/api/users",
-                newUser,
-                config
-            );
-            console.log(res.data.token);
-        } catch (error) {
-            console.error(error);
-        }
+        register(user.name, user.email, user.password, user.confirmPassword);
     };
 
     return (
         <div className="bg-slate-200 p-10 justify-evenly h-[95vh]">
+            <ToastContainer />
             <div className="bg-slate-100 p-10 rounded-md w-[50%] ml-[25%]">
                 <h1 className="text-3xl text-center font-bold text-slate-500">
                     Register
