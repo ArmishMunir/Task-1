@@ -52,7 +52,7 @@ export const login = async (email, password) => {
             body,
             config
         );
-        // console.log(res.data);
+        // console.log("Data: ", res.data);
         localStorage.setItem("token", res.data);
         return true;
     } catch (error) {

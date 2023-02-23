@@ -55,7 +55,7 @@ router.post(
             // jwt
             const payload = {
                 user: {
-                    id: user.id,
+                    id: user._id,
                 },
             };
 
@@ -99,15 +99,10 @@ router.post(
                 });
             }
 
-            user = new User({
-                email,
-                password,
-            });
-
-            // jwt
+            // // jwt
             const payload = {
                 user: {
-                    id: user.id,
+                    id: user._id,
                 },
             };
 
@@ -117,7 +112,6 @@ router.post(
                 { expiresIn: 360000 },
                 (err, token) => {
                     if (err) throw err;
-                    // localStorage.setItem("token", token);
                     res.json(token);
                 }
             );

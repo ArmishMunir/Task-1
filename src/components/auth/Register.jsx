@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { showToast } from "../toast";
 import { register } from "../../services/servicesAuth";
 
 function Register() {
