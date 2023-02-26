@@ -9,14 +9,17 @@ import { MdOutlinePlaylistAdd } from "react-icons/md";
 import Loader from "../../utils/loader";
 
 function Dashboard() {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState({} || null);
+
     useEffect(() => {
         getUser().then((res) => {
             setUser(res.data);
-            console.log(res.data);
+            // console.log(res.data);
         });
     }, []);
+
     const navigate = useNavigate();
+
     return (
         <div className="bg-slate-100 min-h-screen px-[20%] py-5">
             <div className="d-flex flex-grow flex-col items-center justify-center">
@@ -25,7 +28,7 @@ function Dashboard() {
                 </h1>
                 {user.user ? (
                     <h1 className="font-semibold text-slate-600 text-md p-2">
-                        Welcome {user.user.name.toUpperCase()}
+                        Welcome {user.user.name}
                     </h1>
                 ) : (
                     <Loader />
@@ -63,8 +66,8 @@ function Dashboard() {
                         </div>
 
                         <div className="d-flex flex-row p-2">
-                            <Experience experience={user.experience} />
-                            <Education education={user.education} />
+                            <Experience experience={user?.experience} />
+                            <Education education={user?.education} />
                         </div>
                     </div>
                 ) : (

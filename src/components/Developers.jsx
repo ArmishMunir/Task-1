@@ -22,11 +22,11 @@ function Developers() {
                 Developers
             </h1>
             <div className=" grid grid-cols-4 gap-4 p-4">
-                {developers.map((dev) => {
+                {developers?.map((dev) => {
                     return (
                         <div
                             key={dev._id}
-                            className="  p-2 mt-2 shadow-md cursor-pointer rounded-md bg-white hover:bg-slate-100"
+                            className="  p-2 mt-2 shadow-md cursor-pointer rounded-md bg-white hover:bg-slate-100 hover:p-1.5 ease-out duration-300"
                             onClick={() => {
                                 navigate(`/my-profile/?id=${dev.user._id}`);
                             }}
@@ -54,7 +54,7 @@ function Developers() {
                             </p>
                             <p className="text-sm">
                                 <CiLocationOn className="inline-block" />{" "}
-                                {dev.location}
+                                {dev?.location}
                             </p>
                             <div className="d-flex flex-row text-sm text-slate-500 font-light">
                                 <p>
